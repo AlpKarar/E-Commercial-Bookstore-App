@@ -17,6 +17,6 @@ public class ECommercialAppApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.printf("\n\nServer started running on port %s...\n\n", PORT);
+		System.out.printf("\nServer started running on port %s...\n\n", PORT);
 	}
 }
