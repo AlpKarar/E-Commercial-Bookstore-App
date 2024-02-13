@@ -1,22 +1,21 @@
 import React from "react";
 import Header from "./Header";
 import Book from "./Book";
+import Utils from "../Utils/Utils";
 
 const WishlistPage = () => {
     const bookNum = 3;
     const bookNumInRow = 4;
     const itemMargin = 10;
-    const rowNum = bookNum % bookNumInRow === 0 ?
-        Math.floor(bookNum / bookNumInRow) :
-        Math.floor(bookNum / bookNumInRow) + 1;
-    const rowIds = Array.from({length: rowNum}, (_, i) => i + 1);
-    const imageIndex = Array.from({length: bookNumInRow}, (_, i) => i + 1);
+    const rowNum = Utils.calculateRowCount(bookNum, bookNumInRow);
+    const rowIds = Utils.generateRowIds(rowNum);
+    const imageIndex = Utils.generateImageIndexes(bookNumInRow);
 
     return (
         <>
             <Header/>
             <div class="mt-5">
-                <div class="mb-4">
+                <div class="d-flex justify-content-center mb-4">
                     <h1>Wishlist</h1>
                 </div>
                 <div class="container border">
