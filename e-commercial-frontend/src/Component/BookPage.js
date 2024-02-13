@@ -1,6 +1,7 @@
 import React from "react";
 import Book from "./Book";
 import Header from "./Header";
+import Utils from "../Utils/Utils";
 
 const arrayRange = (start, stop, step) =>
     Array.from(
@@ -12,11 +13,9 @@ const BookPage = () => {
     const bookNum = 7;
     const bookNumInRow = 4;
     const itemMargin = 10;
-    const rowNum = bookNum % bookNumInRow === 0 ?
-        Math.floor(bookNum / bookNumInRow) :
-        Math.floor(bookNum / bookNumInRow) + 1;
-    const rowIds = Array.from({length: rowNum}, (_, i) => i + 1);
-    const imageIndex = Array.from({length: bookNumInRow}, (_, i) => i + 1);
+    const rowNum = Utils.calculateRowCount(bookNum, bookNumInRow);
+    const rowIds = Utils.generateRowIds(rowNum);
+    const imageIndex = Utils.generateImageIndexes(bookNumInRow);
 
     return (
         <> 

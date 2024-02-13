@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import axios from 'axios';
 
 const SignupPage = () => {
     return (
@@ -9,15 +10,15 @@ const SignupPage = () => {
             <div class="container w-25 h-auto border p-10  text-center" style={{marginBottom: 200 + 'px'}}>
               <h1>Sign Up</h1>
               <div class="form-outline my-4">
-                <input type="email" id="form2Example1" class="form-control" />
+                <input type="email" id="email" class="form-control" />
                 <label class="form-label" for="form2Example1">Email address</label>
               </div>
               <div class="form-outline mb-4">
-                <input type="text" id="form2Example3" class="form-control" />
+                <input type="text" id="username" class="form-control" />
                 <label class="form-label" for="form2Example1">Username</label>
               </div>
               <div class="form-outline mb-4">
-                <input type="password" id="form2Example2" class="form-control" />
+                <input type="password" id="password" class="form-control" />
                 <label class="form-label" for="form2Example2">Password</label>
               </div>
 
