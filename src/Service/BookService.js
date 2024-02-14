@@ -17,19 +17,19 @@ class BookService {
     }
 
     async createBook(newBook) {
-        return await axios.get(Host_URL + '/create', {newBook})
+        return await axios.post(Host_URL + '/create', {newBook})
             .then(res => res)
             .catch(err => this.printError(err));
     }
 
     async updateBook(bookToUpdate) {
-        return await axios.get(Host_URL + '/update', {bookToUpdate})
+        return await axios.put(Host_URL + '/update', {bookToUpdate})
             .then(res => res)
             .catch(err => this.printError(err));
     }
 
     async deleteBookById(id) {
-        return await axios.get(Host_URL + '/delete/' + id)
+        return await axios.delete(Host_URL + '/delete/' + id)
             .then(res => res)
             .catch(err => this.printError(err));
     }
