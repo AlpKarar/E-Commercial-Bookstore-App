@@ -5,31 +5,31 @@ const Host_URL = 'http://localhost:5005/api/book';
 class BookService {
 
     async getAllBooks() {
-        return await axios.get('/getAll')
+        return await axios.get(Host_URL + '/getAll')
             .then(res => res)
             .catch(err => this.printError(err));
     }
 
     async getBookById(id) {
-        return await axios.get('/get?bookId=' + id)
+        return await axios.get(Host_URL + '/get?bookId=' + id)
             .then(res => res)
             .catch(err => this.printError(err));
     }
 
     async createBook(newBook) {
-        return await axios.get('/create', {newBook})
+        return await axios.get(Host_URL + '/create', {newBook})
             .then(res => res)
             .catch(err => this.printError(err));
     }
 
     async updateBook(bookToUpdate) {
-        return await axios.get('/update', {bookToUpdate})
+        return await axios.get(Host_URL + '/update', {bookToUpdate})
             .then(res => res)
             .catch(err => this.printError(err));
     }
 
     async deleteBookById(id) {
-        return await axios.get('/delete/' + id)
+        return await axios.get(Host_URL + '/delete/' + id)
             .then(res => res)
             .catch(err => this.printError(err));
     }
