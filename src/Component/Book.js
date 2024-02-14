@@ -8,13 +8,15 @@ const adjustTitle = (title) => {
     return title
 }
 
-const Book = () => {
+const Book = (props) => {
     return (
-        <div class="p-3">
-            <img src="https://i.dr.com.tr/cache/600x600-0/originals/0000000724380-1.jpg" width="120" height="120"/>
-            <div class="mt-4">
-                <div class="title font-weight-bold">{adjustTitle("Savaş Ve Barış")}</div>
-                <div class="text-muted"><span class="font-italic">Tolstoy</span></div>
+        <div className="p-3">
+            <div class="d-flex justify-content-center">
+                <img src="https://i.dr.com.tr/cache/600x600-0/originals/0000000724380-1.jpg" width="120" height="120"/>
+            </div>
+            <div className="mt-4">
+                <div className="title font-weight-bold text-center">{adjustTitle("Savaş Ve Barış")}</div>
+                <div className="text-muted text-center"><span className="font-italic">Tolstoy</span></div>
             </div>
         </div>
     )

@@ -14,20 +14,20 @@ const WishlistPage = () => {
     return (
         <>
             <Header/>
-            <div class="mt-5">
-                <div class="d-flex justify-content-center mb-4">
+            <div className="mt-5">
+                <div className="d-flex justify-content-center mb-4">
                     <h1>Wishlist</h1>
                 </div>
-                <div class="container border">
+                <div className="container border">
                     { rowIds.map((item, index) => {
                         return (
-                            <ul id={item} class="row list-unstyled">
+                            <ul id={item} className="row list-unstyled">
                                 {
                                     imageIndex.map((id, idx) => {
                                         const liIdx = index * bookNumInRow + id;
                                         if (liIdx <= bookNum) {
                                             return (
-                                                <li id={liIdx} class="col-sm-3 border" style={{
+                                                <li id={liIdx} className="col-sm-3 border" style={{
                                                     margin: itemMargin + 'px',
                                                     width: 'calc((100% - ' + bookNumInRow * 2 * itemMargin + 'px)/' + bookNumInRow +')'
                                                     }}>

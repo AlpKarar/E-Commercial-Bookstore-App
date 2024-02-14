@@ -17,13 +17,13 @@ class BookService {
     }
 
     async createBook(newBook) {
-        return await axios.post(Host_URL + '/create', {newBook})
+        return await axios.post(Host_URL + '/create', {...newBook})
             .then(res => res)
             .catch(err => this.printError(err));
     }
 
     async updateBook(bookToUpdate) {
-        return await axios.put(Host_URL + '/update', {bookToUpdate})
+        return await axios.put(Host_URL + '/update', {...bookToUpdate})
             .then(res => res)
             .catch(err => this.printError(err));
     }
