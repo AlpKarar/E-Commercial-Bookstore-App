@@ -1,37 +1,33 @@
 import React from "react";
-import Book from "./Book";
 import Header from "./Header";
+import Book from "./Book";
+import Utils from "../Utils/Utils";
 
-const arrayRange = (start, stop, step) =>
-    Array.from(
-    { length: (stop - start) / step + 1 },
-    (value, index) => start + index * step
-    );
-
-const BookPage = () => {
-    const bookNum = 7;
+const WishlistPage = () => {
+    const bookNum = 3;
     const bookNumInRow = 4;
     const itemMargin = 10;
-    const rowNum = bookNum % bookNumInRow === 0 ?
-        Math.floor(bookNum / bookNumInRow) :
-        Math.floor(bookNum / bookNumInRow) + 1;
-    const rowIds = Array.from({length: rowNum}, (_, i) => i + 1);
-    const imageIndex = Array.from({length: bookNumInRow}, (_, i) => i + 1);
+    const rowNum = Utils.calculateRowCount(bookNum, bookNumInRow);
+    const rowIds = Utils.generateRowIds(rowNum);
+    const imageIndex = Utils.generateImageIndexes(bookNumInRow);
 
     return (
-        <> 
+        <>
             <Header/>
-            <div class="mt-5">
-                <div class="container border">
+            <div className="mt-5">
+                <div className="d-flex justify-content-center mb-4">
+                    <h1>Wishlist</h1>
+                </div>
+                <div className="container border">
                     { rowIds.map((item, index) => {
                         return (
-                            <ul id={item} class="row list-unstyled">
+                            <ul id={item} className="row list-unstyled">
                                 {
                                     imageIndex.map((id, idx) => {
                                         const liIdx = index * bookNumInRow + id;
                                         if (liIdx <= bookNum) {
                                             return (
-                                                <li id={liIdx} class="col-sm-3 border" style={{
+                                                <li id={liIdx} className="col-sm-3 border" style={{
                                                     margin: itemMargin + 'px',
                                                     width: 'calc((100% - ' + bookNumInRow * 2 * itemMargin + 'px)/' + bookNumInRow +')'
                                                     }}>
@@ -50,4 +46,4 @@ const BookPage = () => {
     )
 }
 
-export default BookPage;
+export default WishlistPage;

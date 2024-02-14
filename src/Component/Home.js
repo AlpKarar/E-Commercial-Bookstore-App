@@ -9,9 +9,9 @@ const Home = () => {
     return (
         <>
             <Header/>
-            <div class="d-flex align-items-center" style={{height: 'calc(' + 100 + 'vh - ' + 56 + 'px)'}}>
-                <div class="container">
-                    <div class="jumbotron text-center">
+            <div className="d-flex align-items-center" style={{height: 'calc(' + 100 + 'vh - ' + 56 + 'px)'}}>
+                <div className="container">
+                    <div className="jumbotron text-center">
                         <h1>Home Page</h1>
                         <br/>
                         <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing
@@ -20,7 +20,7 @@ const Home = () => {
                         <br/>
                         {
                             isAuth ?
-                            <Link to="/books" class="btn btn-primary btn-block mb-4 text-decoration-none">Show All Books</Link> : <></>
+                            <Link to="/books" className="btn btn-primary btn-block mb-4 text-decoration-none">Show All Books</Link> : <></>
                         }
                     </div>
                 </div>
