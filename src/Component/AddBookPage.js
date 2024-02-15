@@ -25,15 +25,15 @@ const AddBookPage = () => {
               <h1>Add New Book</h1>
               <div className="form-outline my-4">
                 <input type="text" id="imageLink" className="form-control" />
-                <label className="form-label" for="imageLink">Image Link</label>
+                <label className="form-label" htmlFor="imageLink">Image Link</label>
               </div>
               <div className="form-outline mb-4">
                 <input type="text" id="title" className="form-control" />
-                <label className="form-label" for="title">Title</label>
+                <label className="form-label" htmlFor="title">Title</label>
               </div>
               <div className="form-outline mb-4">
                 <input type="text" id="author" className="form-control" />
-                <label className="form-label" for="author">Author</label>
+                <label className="form-label" htmlFor="author">Author</label>
               </div>
 
               <button type="button" className="btn btn-primary btn-block mb-4" onClick={addBook}>Add Book</button>
