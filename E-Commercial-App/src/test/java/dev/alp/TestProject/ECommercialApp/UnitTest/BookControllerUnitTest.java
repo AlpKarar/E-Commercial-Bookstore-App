@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.alp.TestProject.ECommercialApp.Controller.BookController;
 import dev.alp.TestProject.ECommercialApp.Dto.Request.CreateBookRequest;
 import dev.alp.TestProject.ECommercialApp.Dto.Request.UpdateBookRequest;
+import dev.alp.TestProject.ECommercialApp.Dto.Response.CreateBookResponse;
 import dev.alp.TestProject.ECommercialApp.Dto.Response.GetBookResponse;
 import dev.alp.TestProject.ECommercialApp.Dto.Response.UpdateBookResponse;
 import dev.alp.TestProject.ECommercialApp.Model.Book;
@@ -125,19 +126,30 @@ public class BookControllerUnitTest {
     }
 
     @Test
-    public void whenCreateBook_thenReturnStatusCreated() throws Exception {
+    public void whenCreateBook_thenReturnSavedBookWithStatusCreated() throws Exception {
         CreateBookRequest request = CreateBookRequest.builder()
                 .imageLink("http://abc.com/img-4")
                 .title("book4-title")
                 .author("book4-author")
                 .build();
 
+        CreateBookResponse response = CreateBookResponse.builder()
+                .id(1)
+                .imageLink(request.imageLink())
+                .title(request.title())
+                .author(request.author())
+                .build();
+
+        Mockito.when(bookService.createBook(request)).thenReturn(response);
+
         mvc.perform(post("http://localhost:5005/api/book/create")
                         .contentType("application/json")
-                        .content(objectMapper.writeValueAsBytes(request))
+                        .content(objectMapper.writeValueAsString(request))
                 )
                 .andDo(print())
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(content().json(objectMapper.writeValueAsString(response)));
     }
 
     @Test
