@@ -6,17 +6,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ECommercialAppApplication implements CommandLineRunner {
+public class BookServiceApplication implements CommandLineRunner {
 
 	@Value("${server.port}")
 	private String PORT;
 
 	public static void main(String[] args) {
-		SpringApplication.run(ECommercialAppApplication.class, args);
+		SpringApplication.run(BookServiceApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.printf("\n\nServer started running on port %s...\n\n", PORT);
+		System.out.printf("\nServer started running on port %s...\n\n", PORT);
 	}
 }

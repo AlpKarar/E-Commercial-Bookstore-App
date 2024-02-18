@@ -2,10 +2,12 @@ package dev.alp.TestProject.ECommercialApp.Controller;
 
 import dev.alp.TestProject.ECommercialApp.Dto.Request.CreateBookRequest;
 import dev.alp.TestProject.ECommercialApp.Dto.Request.UpdateBookRequest;
+import dev.alp.TestProject.ECommercialApp.Dto.Response.CreateBookResponse;
 import dev.alp.TestProject.ECommercialApp.Dto.Response.GetBookResponse;
 import dev.alp.TestProject.ECommercialApp.Dto.Response.UpdateBookResponse;
 import dev.alp.TestProject.ECommercialApp.Service.BookService;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,9 +47,8 @@ public class BookController {
     }
 
     @PostMapping("/create")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createBook(@RequestBody CreateBookRequest request) {
-        bookService.createBook(request);
+    public ResponseEntity<CreateBookResponse> createBook(@RequestBody CreateBookRequest request) {
+        return new ResponseEntity<>(bookService.createBook(request), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")

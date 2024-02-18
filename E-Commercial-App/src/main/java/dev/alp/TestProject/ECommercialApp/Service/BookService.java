@@ -2,6 +2,7 @@ package dev.alp.TestProject.ECommercialApp.Service;
 
 import dev.alp.TestProject.ECommercialApp.Dto.Request.CreateBookRequest;
 import dev.alp.TestProject.ECommercialApp.Dto.Request.UpdateBookRequest;
+import dev.alp.TestProject.ECommercialApp.Dto.Response.CreateBookResponse;
 import dev.alp.TestProject.ECommercialApp.Dto.Response.GetBookResponse;
 import dev.alp.TestProject.ECommercialApp.Dto.Response.UpdateBookResponse;
 import dev.alp.TestProject.ECommercialApp.Model.Book;
@@ -29,7 +30,8 @@ public class BookService {
                         .imageLink(book.getImageLink())
                         .title(book.getTitle())
                         .author(book.getAuthor())
-                        .build())
+                        .build()
+                )
                 .toList();
     }
 
@@ -48,14 +50,21 @@ public class BookService {
                 .build();
     }
 
-    public void createBook(CreateBookRequest request) {
+    public CreateBookResponse createBook(CreateBookRequest request) {
         Book newBook = Book.builder()
                 .imageLink(request.imageLink())
                 .title(request.title())
                 .author(request.author())
                 .build();
 
-        bookRepository.save(newBook);
+        Book savedBook = bookRepository.save(newBook);
+
+        return CreateBookResponse.builder()
+                .id(savedBook.getId())
+                .imageLink(savedBook.getImageLink())
+                .title(savedBook.getTitle())
+                .author(savedBook.getAuthor())
+                .build();
     }
 
     public UpdateBookResponse updateBook(UpdateBookRequest request) throws EntityNotFoundException {
