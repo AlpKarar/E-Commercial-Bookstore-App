@@ -9,7 +9,6 @@ import dev.alp.TestProject.WishlistService.Repository.WishlistRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class WishlistService {
@@ -39,7 +38,7 @@ public class WishlistService {
             throw new Exception("Duplicate Key Error - Book ID: " + request.bookId());
         }
 
-        Wishlist bookToAdd = wishlistRepository.save(Wishlist.builder()
+        Wishlist addedBook = wishlistRepository.save(Wishlist.builder()
                 .bookId(request.bookId())
                 .imageLink(request.imageLink())
                 .title(request.title())
@@ -47,11 +46,11 @@ public class WishlistService {
                 .build());
 
         return AddToWishlistResponse.builder()
-                .id(bookToAdd.getId())
-                .bookId(bookToAdd.getBookId())
-                .imageLink(bookToAdd.getImageLink())
-                .title(bookToAdd.getTitle())
-                .author(bookToAdd.getAuthor())
+                .id(addedBook.getId())
+                .bookId(addedBook.getBookId())
+                .imageLink(addedBook.getImageLink())
+                .title(addedBook.getTitle())
+                .author(addedBook.getAuthor())
                 .build();
     }
 
