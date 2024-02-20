@@ -9,12 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Wishlist-Service" />
         <module name="E-Commercial-App" />
+        <module name="Shopping-Cart" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="E-Commercial-App" options="-parameters" />
+      <module name="Shopping-Cart" options="-parameters" />
       <module name="Wishlist-Service" options="-parameters" />
     </option>
   </component>

@@ -1,0 +1,22 @@
+version: '3.0'
+
+services:
+  Wishlist-Service-DB:
+    image: mongo:7.0.5
+    restart: always
+    container_name: WishlistDB-Mongo
+    environment:
+      MONGO_INITDB_DATABASE: WishlistDB
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+  Shopping-Cart-DB:
+    image: mysql:8.3.0
+    restart: always
+    container_name: ShoppingCartDB-MySQL
+    environment:
+      MYSQL_DATABASE: ShoppingCartDB
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
