@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "./Header";
 import Book from "./Book";
 import Utils from "../Utils/Utils";
+import Context from "../ContextAPI/Context";
+import WishlistService from "../Service/WishlistService";
 
-const WishlistPage = () => {
-    const bookNum = 3;
-    const bookNumInRow = 4;
-    const itemMargin = 10;
-    const rowNum = Utils.calculateRowCount(bookNum, bookNumInRow);
-    const rowIds = Utils.generateRowIds(rowNum);
-    const imageIndex = Utils.generateImageIndexes(bookNumInRow);
+let bookNumInRow = 4;
+let itemMargin = 10;
+let bookNum;
+let rowNum;
+let rowIds;
+let imageIndexes;
+
+const WishlistPage = () => {    
+    const {allWishlistBooks, setWishlistBooks} = useContext(Context);
+    const [isFirstRender, setFirstRender] = useState(true);
+
+    bookNum = allWishlistBooks.length;
+    rowNum = Utils.calculateRowCount(bookNum, bookNumInRow);
+    rowIds = Utils.generateRowIds(rowNum);
+    imageIndexes = Utils.generateImageIndexes(bookNum);
+
+    useEffect(() => {
+        if (isFirstRender) {
+            WishlistService.getAllBooksInWishlist().then(res => {
+                const newBooks = (res || []).filter(newBook => {
+                    return !allWishlistBooks.some(book => newBook.bookId === book.bookId);
+                });
+
+                setWishlistBooks(allWishlistBooks => [...allWishlistBooks, ...newBooks]);
+            });
+
+            setFirstRender(false);
+        }
+    }, [allWishlistBooks])
 
     return (
         <>
@@ -18,29 +42,38 @@ const WishlistPage = () => {
                 <div className="d-flex justify-content-center mb-4">
                     <h1>Wishlist</h1>
                 </div>
-                <div className="container border">
-                    { rowIds.map((item, index) => {
-                        return (
-                            <ul id={item} className="row list-unstyled">
-                                {
-                                    imageIndex.map((id, idx) => {
-                                        const liIdx = index * bookNumInRow + id;
-                                        if (liIdx <= bookNum) {
-                                            return (
-                                                <li id={liIdx} className="col-sm-3 border" style={{
-                                                    margin: itemMargin + 'px',
-                                                    width: 'calc((100% - ' + bookNumInRow * 2 * itemMargin + 'px)/' + bookNumInRow +')'
-                                                    }}>
-                                                    <Book/>
-                                                </li>
-                                            )
+                { allWishlistBooks.length > 0 ?
+                    <div className="container border">
+                        {
+                            rowIds.map(rowId => {
+                                return (
+                                    <ul id={rowId} className="d-flex list-unstyled">
+                                        {
+                                            allWishlistBooks.map((wishlistBook, index) => {
+                                                const start = (rowId - 1) * bookNumInRow;
+
+                                                if (start <= index && index < start + bookNumInRow) {
+                                                    const {bookId, imageLink, title, author} = wishlistBook;
+                                                    const properties = {
+                                                        bookId,
+                                                        imageLink,
+                                                        title,
+                                                        author,
+                                                        pageType: "Wishlist-Page"
+                                                    };
+
+                                                    return (
+                                                        <Book bookNumInRow={bookNumInRow} itemMargin={itemMargin} properties={properties}/>                                                        
+                                                    )
+                                                }
+                                            })
                                         }
-                                    })
-                                }
-                            </ul>
-                        )
-                    })}
-                </div>
+                                    </ul>
+                                )
+                            })
+                        }
+                    </div> :
+                <></> }
             </div>
         </>
     )

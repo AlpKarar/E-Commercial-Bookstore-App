@@ -17,19 +17,16 @@ const clickOnWishlist = (isInWishlist, setWishlist, e) => {
     console.log(bookId, imageLink, title, author);
 
     if (isInWishlist) {
-        //WishlistService.removeFromWishlist(bookId);
-        console.log("WishlistService.removeFromWishlist");
+        WishlistService.removeFromWishlist(bookId);
     } else {
-        /*
         const bookToAddInWishlist = {
             bookId,
             imageLink,
             title,
             author
-        }
-        */
-        //WishlistService.addToWishlist(bookToAddInWishlist);
-        console.log("WishlistService.removeFromWishlist");
+        };
+
+        WishlistService.addToWishlist(bookToAddInWishlist).then(res => console.log(res));
     }
 
     setWishlist(!isInWishlist);
@@ -40,14 +37,20 @@ const adjustTitle = (title) => {
         return title.substr(22) + '...';
     }
 
-    return title
+    return title;
 };
 
+const checkIfBookIsInWishlist = (allWishlistBooks, id) => {
+    return allWishlistBooks.some(book => book.bookId === id);
+}
+
 const Book = (props) => {
-    const {allBooks, setAllBooks, isInWishlist, setWishlist} = useContext(Context);
-    const [isDeleted, setDelete] = useState(false);
     const {bookNumInRow, itemMargin, properties} = props;
-    const {id, imageLink, title, author} = properties;
+    let {id, bookId, imageLink, title, author, pageType} = properties;
+    const {allBooks, setAllBooks, allWishlistBooks, setWishlistBooks} = useContext(Context);
+    const [isDeleted, setDelete] = useState(false);
+    id = pageType === "Wishlist-Page" ? bookId : id;
+    const [isInWishlist, setWishlist] = useState(checkIfBookIsInWishlist(allWishlistBooks, id));
 
     useEffect(() => {
         if (isDeleted) {
@@ -56,8 +59,8 @@ const Book = (props) => {
                 return book.id != id;
             }));
             setDelete(false);
-            console.log("BOOK Component");
         }
+
     }, [isDeleted])
     
     return (

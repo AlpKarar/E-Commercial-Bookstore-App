@@ -5,6 +5,7 @@ import Header from "./Header";
 import Utils from "../Utils/Utils";
 import { Link } from "react-router-dom";
 import BookService from "../Service/BookService";
+import WishlistService from "../Service/WishlistService";
 
 let bookNumInRow = 4;
 let itemMargin = 10;
@@ -14,7 +15,9 @@ let rowIds;
 let imageIndexes;
 
 const BookPage = () => {
-    const {isFirstRenderOfBookPage, setFirstRenderOfBookPage, allBooks, setAllBooks} = useContext(Context);
+    const {allBooks, setAllBooks, allWishlistBooks, setWishlistBooks} = useContext(Context);
+
+    const [isFirstRender, setFirstRender] = useState(true);
 
     bookNum = allBooks.length;
     rowNum = Utils.calculateRowCount(bookNum, bookNumInRow);
@@ -22,12 +25,26 @@ const BookPage = () => {
     imageIndexes = Utils.generateImageIndexes(bookNum);
 
     useEffect(() => {
-        if (isFirstRenderOfBookPage) {
+        if (isFirstRender) {
             BookService.getAllBooks().then(res => {
-                setAllBooks(res.data); 
-             });
+                let newBooks = ((res || {}).data || []);
 
-             setFirstRenderOfBookPage(false);
+                newBooks = newBooks.filter(newBook => {
+                    return !allBooks.some(book => newBook.bookId === book.bookId);
+                });
+
+                setAllBooks(allBooks => [...allBooks, ...newBooks]);
+            });
+
+            WishlistService.getAllBooksInWishlist().then(res => {
+                const newWishlistBooks = (res || []).filter(newWishlist => {
+                    return !allWishlistBooks.some(wishlistBook => newWishlist.bookId === wishlistBook.bookId);
+                });
+
+                setWishlistBooks(allWishlistBooks => [...allWishlistBooks, ...newWishlistBooks]);
+            })
+
+            setFirstRender(false);
         }
     }, [allBooks])
 
@@ -38,7 +55,7 @@ const BookPage = () => {
                 <div className="d-flex justify-content-end">
                     <Link to="/books/new" type="button" className="btn btn-primary btn-block mb-4"
                         style={{position: 'relative', right: 75 + 'px'}}
-                        onClick={() => setFirstRenderOfBookPage(true)}>Add New Book</Link>
+                        onClick={() => setFirstRender(true)}>Add New Book</Link>
                 </div>
                 {
                     allBooks.length > 0 ?
@@ -56,7 +73,8 @@ const BookPage = () => {
                                                             id,
                                                             imageLink,
                                                             title,
-                                                            author 
+                                                            author,
+                                                            pageType: "Book-Page"
                                                         };
 
                                                         return (
