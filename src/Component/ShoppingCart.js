@@ -45,7 +45,7 @@ const ShoppingCart = () => {
                           <ShoppingCartItem bookInCart={bookInCart} rowIndex={rowIndex}/>
                         )
                       })}
-                      
+
                     </div>
                   </div>
                   <div className="card mb-4">
@@ -61,14 +61,8 @@ const ShoppingCart = () => {
                         src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
                         alt="Visa" />
                       <img className="me-2" width="45px"
-                        src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-                        alt="American Express" />
-                      <img className="me-2" width="45px"
                         src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
                         alt="Mastercard" />
-                      <img className="me-2" width="45px"
-                        src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp"
-                        alt="PayPal acceptance mark" />
                     </div>
                   </div>
                 </div>
@@ -96,7 +90,7 @@ const ShoppingCart = () => {
                           <span className="total-amount"><strong></strong></span>
                         </li>
                       </ul>
-                    
+
                       <button type="button" className="btn btn-primary btn-lg btn-block">
                         Go to checkout
                       </button>
