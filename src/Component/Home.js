@@ -2,6 +2,7 @@ import {React, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Context from '../ContextAPI/Context';
+import ShoppingCart from './ShoppingCart';
 
 const Home = () => {
     const {isAuth, setAuth} = useContext(Context);

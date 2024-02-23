@@ -5,7 +5,21 @@ const ContextProvider = (props) => {
     const [isAuth, setAuth] = useState(true);
     const [allBooks, setAllBooks] = useState([]);
     const [allWishlistBooks, setWishlistBooks] = useState([]);
-
+    const [allBooksInCart, setBooksInCart] = useState([
+      {
+        imageLink: "http://whyareyouwatchingmeout.cox",
+        title: "Savaş Ve Barış",
+        author: "Tolstoy",
+        price: "$17.99"
+      },
+      {
+        imageLink: "http://whyareyouwatchingmeout.cox",
+        title: "Koromozov Kardeşler",
+        author: "Dostoyevski",
+        price: "$11.99"
+      }
+    ]);
+    const [totalInCart, setTotalInCart] = useState(false);
   
     const states = {
         isAuth: isAuth,
@@ -13,7 +27,11 @@ const ContextProvider = (props) => {
         allBooks: allBooks,
         setAllBooks: setAllBooks,
         allWishlistBooks: allWishlistBooks,
-        setWishlistBooks: setWishlistBooks
+        setWishlistBooks: setWishlistBooks,
+        allBooksInCart: allBooksInCart,
+        setBooksInCart: setBooksInCart,
+        totalInCart: totalInCart,
+        setTotalInCart: setTotalInCart
     };
 
     return (

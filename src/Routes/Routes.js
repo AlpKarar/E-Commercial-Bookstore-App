@@ -4,6 +4,7 @@ import Home from '../Component/Home';
 import AboutPage from "../Component/AboutPage";
 import BookPage from "../Component/BookPage";
 import AddBookPage from "../Component/AddBookPage";
+import ShoppingCart from "../Component/ShoppingCart";
 import SignupPage from "../Component/SignupPage";
 import LoginPage from "../Component/LoginPage";
 import ForgotPasswordPage from "../Component/ForgotPasswordPage";
@@ -17,6 +18,7 @@ const BookAppRoutes = () => {
             <Route path="/about" element={<AboutPage/>} />
             <Route path="/books" element={<BookPage/>} />
             <Route path="/books/new" element={<AddBookPage/>} />
+            <Route path="/cart" element={<ShoppingCart/>} />
             <Route path="/signup" element={<SignupPage/>} />
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/updatePassword" element={<ForgotPasswordPage/>} />
