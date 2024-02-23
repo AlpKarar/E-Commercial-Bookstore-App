@@ -7,12 +7,14 @@ const ContextProvider = (props) => {
     const [allWishlistBooks, setWishlistBooks] = useState([]);
     const [allBooksInCart, setBooksInCart] = useState([
       {
+        bookId: 1,
         imageLink: "http://whyareyouwatchingmeout.cox",
         title: "Savaş Ve Barış",
         author: "Tolstoy",
         price: "$17.99"
       },
       {
+        bookId: 2,
         imageLink: "http://whyareyouwatchingmeout.cox",
         title: "Koromozov Kardeşler",
         author: "Dostoyevski",
