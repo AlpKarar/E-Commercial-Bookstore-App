@@ -9,6 +9,5 @@ public record GetFromWishlistResponse(
         String imageLink,
         String title,
         String author,
-        Double price,
-        Integer amount
+        Double price
 ) {}

@@ -37,6 +37,7 @@ public class WishlistServiceUnitTest {
                 .imageLink("http://abc.com/img-1")
                 .title("title-1")
                 .author("author-1")
+                .price(11.99)
                 .build();
 
         Wishlist book2 = Wishlist.builder()
@@ -45,6 +46,7 @@ public class WishlistServiceUnitTest {
                 .imageLink("http://abc.com/img-2")
                 .title("title-2")
                 .author("author-2")
+                .price(17.50)
                 .build();
 
         Wishlist book3 = Wishlist.builder()
@@ -53,6 +55,7 @@ public class WishlistServiceUnitTest {
                 .imageLink("http://abc.com/img-3")
                 .title("title-3")
                 .author("author-3")
+                .price(23.00)
                 .build();
 
         booksInWishlist.addAll(List.of(book1, book2, book3));
@@ -68,6 +71,7 @@ public class WishlistServiceUnitTest {
                         .imageLink(book.getImageLink())
                         .title(book.getTitle())
                         .author(book.getAuthor())
+                        .price(book.getPrice())
                         .build()
                 ).toList();
 
@@ -91,6 +95,7 @@ public class WishlistServiceUnitTest {
                     .imageLink(book.getImageLink())
                     .title(book.getTitle())
                     .author(book.getAuthor())
+                    .price(book.getPrice())
                     .build();
 
             bookToAdd = Wishlist.builder()
@@ -98,6 +103,7 @@ public class WishlistServiceUnitTest {
                     .imageLink(request.imageLink())
                     .title(request.title())
                     .author(request.author())
+                    .price(request.price())
                     .build();
 
             addedBook = Wishlist.builder()
@@ -106,14 +112,16 @@ public class WishlistServiceUnitTest {
                     .imageLink(request.imageLink())
                     .title(request.title())
                     .author(request.author())
+                    .price(request.price())
                     .build();
 
             expectedResponse = AddToWishlistResponse.builder()
-                    .id(bookToAdd.getId())
-                    .bookId(book.getBookId())
-                    .imageLink(bookToAdd.getImageLink())
-                    .title(bookToAdd.getTitle())
-                    .author(book.getAuthor())
+                    .id(addedBook.getId())
+                    .bookId(addedBook.getBookId())
+                    .imageLink(addedBook.getImageLink())
+                    .title(addedBook.getTitle())
+                    .author(addedBook.getAuthor())
+                    .price(addedBook.getPrice())
                     .build();
 
             Mockito.when(wishlistRepository.existsByBookId(request.bookId())).thenReturn(false);
@@ -135,6 +143,7 @@ public class WishlistServiceUnitTest {
                     .imageLink(book.getImageLink())
                     .title(book.getTitle())
                     .author(book.getAuthor())
+                    .price(book.getPrice())
                     .build();
 
             bookId = request.bookId();

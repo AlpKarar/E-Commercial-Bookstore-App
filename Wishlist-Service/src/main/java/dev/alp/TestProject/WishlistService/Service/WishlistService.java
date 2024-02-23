@@ -29,7 +29,6 @@ public class WishlistService {
                         .title(book.getTitle())
                         .author(book.getAuthor())
                         .price(book.getPrice())
-                        .amount(book.getAmount())
                         .build()
                 )
                 .toList();
@@ -46,7 +45,6 @@ public class WishlistService {
                 .title(request.title())
                 .author(request.author())
                 .price(request.price())
-                .amount(request.amount())
                 .build());
 
         return AddToWishlistResponse.builder()
@@ -56,7 +54,6 @@ public class WishlistService {
                 .title(addedBook.getTitle())
                 .author(addedBook.getAuthor())
                 .price(addedBook.getPrice())
-                .amount(addedBook.getAmount())
                 .build();
     }
 

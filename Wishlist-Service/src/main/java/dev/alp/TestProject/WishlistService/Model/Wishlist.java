@@ -24,5 +24,4 @@ public class Wishlist {
     private String title;
     private String author;
     private Double price;
-    private Integer amount;
 }

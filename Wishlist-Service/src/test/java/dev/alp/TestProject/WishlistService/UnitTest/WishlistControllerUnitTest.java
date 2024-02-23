@@ -50,6 +50,7 @@ public class WishlistControllerUnitTest {
                 .imageLink("http://abc.com/img-1")
                 .title("title-1")
                 .author("author-1")
+                .price(11.99)
                 .build();
 
         Wishlist book2 = Wishlist.builder()
@@ -58,6 +59,7 @@ public class WishlistControllerUnitTest {
                 .imageLink("http://abc.com/img-2")
                 .title("title-2")
                 .author("author-2")
+                .price(17.50)
                 .build();
 
         Wishlist book3 = Wishlist.builder()
@@ -66,6 +68,7 @@ public class WishlistControllerUnitTest {
                 .imageLink("http://abc.com/img-3")
                 .title("title-3")
                 .author("author-3")
+                .price(23.00)
                 .build();
 
         booksInWishlist.addAll(List.of(book1, book2, book3));
@@ -87,6 +90,7 @@ public class WishlistControllerUnitTest {
                     .imageLink(curBookInWishlist.getImageLink())
                     .title(curBookInWishlist.getTitle())
                     .author(curBookInWishlist.getAuthor())
+                    .price(curBookInWishlist.getPrice())
                     .build();
 
             expectedResponse.add(curResponse);
@@ -112,6 +116,7 @@ public class WishlistControllerUnitTest {
                     .imageLink(book.getImageLink())
                     .title(book.getTitle())
                     .author(book.getAuthor())
+                    .price(book.getPrice())
                     .build();
 
             response = AddToWishlistResponse.builder()
@@ -119,6 +124,7 @@ public class WishlistControllerUnitTest {
                     .imageLink(request.imageLink())
                     .title(request.title())
                     .author(request.author())
+                    .price(request.price())
                     .build();
 
             Mockito.when(wishlistService.addBookToWishlist(request)).thenReturn(response);
@@ -144,6 +150,7 @@ public class WishlistControllerUnitTest {
                     .imageLink(book.getImageLink())
                     .title(book.getTitle())
                     .author(book.getAuthor())
+                    .price(book.getPrice())
                     .build();
 
             String expectedResponse = String.format("Duplicate Key Error - Book ID: %s", request.bookId());
