@@ -1,8 +1,6 @@
 package dev.alp.TestProject.WishlistService.Dto.Response;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 @Builder
 public record AddToWishlistResponse(
@@ -10,5 +8,7 @@ public record AddToWishlistResponse(
         Integer bookId,
         String imageLink,
         String title,
-        String author
+        String author,
+        Double price,
+        Integer amount
 ) {}

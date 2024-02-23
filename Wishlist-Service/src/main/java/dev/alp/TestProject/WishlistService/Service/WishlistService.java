@@ -28,6 +28,8 @@ public class WishlistService {
                         .imageLink(book.getImageLink())
                         .title(book.getTitle())
                         .author(book.getAuthor())
+                        .price(book.getPrice())
+                        .amount(book.getAmount())
                         .build()
                 )
                 .toList();
@@ -43,6 +45,8 @@ public class WishlistService {
                 .imageLink(request.imageLink())
                 .title(request.title())
                 .author(request.author())
+                .price(request.price())
+                .amount(request.amount())
                 .build());
 
         return AddToWishlistResponse.builder()
@@ -51,6 +55,8 @@ public class WishlistService {
                 .imageLink(addedBook.getImageLink())
                 .title(addedBook.getTitle())
                 .author(addedBook.getAuthor())
+                .price(addedBook.getPrice())
+                .amount(addedBook.getAmount())
                 .build();
     }
 

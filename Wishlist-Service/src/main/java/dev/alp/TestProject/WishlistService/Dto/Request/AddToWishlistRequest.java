@@ -7,5 +7,7 @@ public record AddToWishlistRequest(
         Integer bookId,
         String imageLink,
         String title,
-        String author
+        String author,
+        Double price,
+        Integer amount
 ) {}
