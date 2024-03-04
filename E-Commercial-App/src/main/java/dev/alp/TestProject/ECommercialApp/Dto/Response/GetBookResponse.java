@@ -7,5 +7,6 @@ public record GetBookResponse(
         Integer id,
         String imageLink,
         String title,
-        String author
+        String author,
+        Double price
 ) {}

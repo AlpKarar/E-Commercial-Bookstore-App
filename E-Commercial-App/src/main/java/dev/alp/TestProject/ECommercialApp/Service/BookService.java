@@ -30,6 +30,7 @@ public class BookService {
                         .imageLink(book.getImageLink())
                         .title(book.getTitle())
                         .author(book.getAuthor())
+                        .price(book.getPrice())
                         .build()
                 )
                 .toList();
@@ -47,6 +48,7 @@ public class BookService {
                 .imageLink(book.get().getImageLink())
                 .title(book.get().getTitle())
                 .author(book.get().getAuthor())
+                .price(book.get().getPrice())
                 .build();
     }
 
@@ -55,6 +57,8 @@ public class BookService {
                 .imageLink(request.imageLink())
                 .title(request.title())
                 .author(request.author())
+                .price(request.price())
+                .stock(request.stock())
                 .build();
 
         Book savedBook = bookRepository.save(newBook);
@@ -64,6 +68,7 @@ public class BookService {
                 .imageLink(savedBook.getImageLink())
                 .title(savedBook.getTitle())
                 .author(savedBook.getAuthor())
+                .price(savedBook.getPrice())
                 .build();
     }
 
@@ -88,6 +93,10 @@ public class BookService {
             updatedBook.setAuthor(request.author());
         }
 
+        if (request.price() != 0) {
+            updatedBook.setPrice(request.price());
+        }
+
         bookRepository.save(updatedBook);
 
         return UpdateBookResponse.builder()
@@ -95,6 +104,7 @@ public class BookService {
                 .imageLink(updatedBook.getImageLink())
                 .title(updatedBook.getTitle())
                 .author(updatedBook.getAuthor())
+                .price(updatedBook.getPrice())
                 .build();
     }
 

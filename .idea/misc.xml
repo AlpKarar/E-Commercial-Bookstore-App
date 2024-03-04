@@ -8,7 +8,14 @@
         <option value="$PROJECT_DIR$/Book-Service/pom.xml" />
         <option value="$PROJECT_DIR$/Wishlist-Service/pom.xml" />
         <option value="$PROJECT_DIR$/Shopping-Cart/pom.xml" />
+        <option value="$PROJECT_DIR$/Order-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/Kotlin-Test/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Kotlin-Test/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_20" default="true" project-jdk-name="openjdk-20" project-jdk-type="JavaSDK">

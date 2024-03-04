@@ -1,26 +1,32 @@
-package dev.alp.TestProject.ECommercialApp.Model;
+package dev.alp.TestProject.OrderService.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+
+import java.util.Objects;
 
 @Entity
-@Table(name = "books")
+@Table(name = "order_items")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Book {
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
+    private String bookId;
     private String imageLink;
     private String title;
     private String author;
     private Double price;
-    private Integer stock;
+    private Integer amount;
+
 }

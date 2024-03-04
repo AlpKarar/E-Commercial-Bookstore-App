@@ -7,5 +7,6 @@ public record UpdateBookRequest(
         Integer id,
         String imageLink,
         String title,
-        String author
+        String author,
+        Double price
 ) {}

@@ -11,6 +11,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
     ports:
       - "27017:27017"
+
   Shopping-Cart-DB:
     image: mysql:8.3.0
     restart: always
@@ -20,3 +21,15 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3307:3306"
+
+
+  Order-Service-DB:
+    image: postgres:16
+    restart: always
+    container_name: OrderServiceDB-Postgres
+    environment:
+      POSTGRES_DB: OrderServiceDB
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"

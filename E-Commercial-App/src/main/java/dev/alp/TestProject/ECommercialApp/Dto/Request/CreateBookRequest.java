@@ -6,5 +6,7 @@ import lombok.Builder;
 public record CreateBookRequest(
         String imageLink,
         String title,
-        String author
+        String author,
+        Double price,
+        Integer stock
 ) {}
